@@ -1,0 +1,66 @@
+// old approach
+
+const radius = [3, 2, 4, 1];
+
+const calculateArea = function (radius) {
+    let output = [];
+    for (let i = 0; i < radius.length; i++) {
+        output.push(Math.PI * radius[i] * radius[i])
+    }
+    return output;
+}
+const calculatePerimeter = function (radius) {
+    let output = [];
+    for (let i = 0; i < radius.length; i++) {
+        output.push(2 * Math.PI * radius[i])
+    }
+    return output;
+}
+const calculateDiameter = function (radius) {
+    let output = [];
+    for (let i = 0; i < radius.length; i++) {
+        output.push(2 * radius[i])
+    }
+    return output;
+}
+
+console.log(calculateArea(radius));
+console.log(calculatePerimeter(radius));
+console.log(calculateDiameter(radius));
+
+// functional programming
+
+
+    const radius = [3, 2, 4, 1];
+
+    const area = function (radius) {
+        return Math.PI * radius * radius;
+    }
+
+    const perimeter = function (radius) {
+        return 2 * Math.PI * radius;
+    }
+
+    const diameter = function (radius) {
+        return 2 * radius;
+    }
+
+    const calculate = function (arr, logic) {
+        let output = [];
+        for (let i = 0; i < arr.length; i++) {
+            output.push(logic(arr[i]));
+        }
+        return output;
+    }
+
+    console.log(calculate(radius, area));
+    console.log(calculate(radius, perimeter));
+    console.log(calculate(radius, diameter));
+
+
+
+// map function -
+
+const calculate = function (arr, logic) {
+    return arr.map(logic);
+}

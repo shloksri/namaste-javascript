@@ -1,0 +1,168 @@
+Dump file
+
+// a();
+// b();
+
+// // Function statement aka Function Declaration
+
+//     function a(){
+//         console.log("a called");
+//     }
+
+// // Function Expression - function acts as a value
+    
+//     var b = function (){
+//         console.log("b called");
+//     }
+
+
+// Named Function Expression throws ReferenceError: xyz is not defined
+    
+    var d = function xyz(){
+        // console.log("b called");
+    }
+
+    // xyz();
+
+// this xyz is not accessible outside the scope. But we can access it something like this
+
+var c = function xyz(){
+    console.log(xyz);
+}
+
+c();
+
+// Anonymous Functions
+
+
+// Difference between Parameters and Arguments
+
+    var d = function (param1, param2){ //parameters
+        console.log("b called");
+    }
+
+    d(1, 2); //Arguments
+
+// First class Functions
+
+    var cd = function(){
+        return function(){
+
+        }
+    }
+
+// Functions that have the ability to use other functions as variables, or take a function as an argument, or return a function.
+// Functions are first class citizens.
+
+
+
+
+
+// console.log(z);  //undefined
+
+    // {
+    //     var z = 10;
+    //     let b = 100;
+    //     console.log("b inside = ", b); //100
+        
+    // }
+
+    // console.log(z);  //10
+    // console.log(b);  //ReferenceError: b is not defined
+
+// function x(){
+//     console.log("i = ", i);
+    
+//     for(var i=1; i<=5; i++){
+//         setTimeout(function(){
+//             console.log(i);
+//         }, i*1000)
+//     }
+//     console.log("Namaste Javascript");
+    
+// }
+
+// x();
+
+
+
+
+
+// var a = 10;
+// function x(y){
+//     y();
+// }
+
+// x(function y(){
+//     console.log(a);
+// });
+
+
+
+
+// function z(){
+//     var b = 900;
+//     return function x(){
+//         var a = 10;
+//         return function y(){
+//             console.log(a, b);
+//         }
+//         // y();
+//     }
+    
+// }
+// z()()();
+
+
+
+
+
+
+
+
+
+
+
+/*
+const a=100;
+{
+    let a=10;
+    console.log("inside: ", a);
+    
+}
+console.log(a);
+*/
+
+
+
+// var n = 2;
+//    function square (num) {
+//        var ans = num * num;
+//        return ans;
+//    }
+//    var square2 = square(n);
+//    var square4 = square(4);
+
+
+
+//    var getName = () =>{
+//        console.log("getName function called")
+//    }
+//    var getName = function(){
+//        console.log("getName function called")
+//    }
+
+
+// var x = 1;
+// a();
+// b();
+// console.log(x);
+
+// function a() {
+//     var x = 10;
+//     console.log(x);
+// }
+// function b() {
+//     var x = 100;
+//     console.log(x);
+// }

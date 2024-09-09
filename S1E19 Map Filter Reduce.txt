@@ -1,0 +1,28 @@
+let arr = [5, 1, 2, 3, 6]
+
+let output = arr.reduce(function (acc, curr) {
+    if (curr > acc) {
+        acc = curr
+    }
+    return acc;
+}, 0);
+
+console.log(output);
+
+const users = [
+    { firstName: "akshay", lastName: "saini", age: 26 },
+    { firstName: "donald", lastName: "trump", age: 75 },
+    { firstName: "elon", lastName: "musk", age: 50 },
+    { firstName: "deepika", lastName: "padukone", age: 26 }
+]
+
+//first name of all the people < 30
+
+const output = users.reduce(function (acc, curr) {
+    if (curr.age < 30)
+        acc.push(curr.firstName)
+    return acc;
+
+}, [])
+
+console.log(output);

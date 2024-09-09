@@ -1,0 +1,53 @@
+1. Variables - let const var
+2. Hoisting
+
+3. Functions in JS 
+    - Arrow functions
+    - Higher Order functions
+
+4. Arrays and Objects
+    - Array Destructuring
+    - Object Destructuring
+    - Rest Operator
+    - Spread operator
+
+5. Conditions in JS
+    - if else
+    - ternary operator
+    - using && and ||
+    - Optional chaining
+
+6. Array methods
+    - map()
+    - filter()
+    - reduce()
+    - sort()
+
+7. Event listeners
+    - onClick
+    - onBlur
+    - onChange
+    - onFocus
+
+8. Event bubbling and Capturing
+
+9. setTimeout() and setInterval()
+
+10. Asynchronous Events
+    - Callbacks
+    - Callback Hell
+    - Promises
+    - Promise APIs
+
+11. async await
+
+12. try catch
+
+
+
+
+
+
+
+
+
