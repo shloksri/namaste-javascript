@@ -1,0 +1,259 @@
+// cart
+// createOrder - return Promise
+// proceedToPayment - returns Promise
+
+const cart = ["kurta", "pants", "shoes"];
+
+let promise = createOrder(cart);
+
+promise
+    .then(function (orderId) {
+        console.log(orderId);
+    })
+    .catch(function (err) {
+            console.log(err.message)
+        }
+    );
+
+// another way to get both resolve and reject defined in the ".then" call.
+promise
+    .then(
+        function (orderId) {
+            console.log(orderId);
+        },
+        function (err) {
+            console.log(err.message)
+        }
+    );
+
+
+function createOrder(cart) {
+
+    const pr = new Promise(function (resolve, reject) {
+
+        let orderId = "12345"; // basically, here we can have the DB calls to fetch the order ID. For now, we are keeping it as static.
+
+        if (orderId) {
+            setTimeout(() => {
+                resolve(orderId);
+            }, 1000)
+
+        }
+        if (!validateCart(cart)) {
+            let err = new Error("Cart is not Valid");
+            reject(err);
+        }
+    });
+
+    return pr;
+}
+
+function validateCart(cart) {
+    return true; //adding a default true so that cart is valid
+}
+
+
+//this is not working, because it is returning resolve function, and not calling it.
+        if (orderId) {
+            setTimeout(() => resolve(orderId), 2000);
+        }
+
+================================================================================================================================
+
+
+/// 2nd version of the code 
+const cart = ["pants", "kurta", "shoes"];
+
+function createOrder(cart) {
+    let pr = new Promise(function (resolve, reject) {
+        let orderId = "12345";
+        if (orderId) {
+            setTimeout(() => { resolve(orderId) }, 3000);
+        }
+
+        if (!validateCart(cart)) {
+            let err = new Error("Cart is not valid");
+            reject(err);
+        }
+    });
+
+    return pr;
+}
+
+function validateCart() {
+    return true;
+}
+
+const promise = createOrder(cart);
+console.log(promise); //it will show pending, because it takes 5 seconds for the code to execute
+
+
+promise
+    .then(
+        function (orderId) {
+            console.log(orderId);
+        },
+        function (err) {
+            console.log(err.message)
+        });
+
+setTimeout(() => {
+    console.log(promise);
+}, 4000);
+
+================================================================================================================================
+/// 3rd instance -- 2 functions completed - createOrder and proceedToPayment
+
+const cart = ['shoes', 'pants', 'kurta'];
+
+function createOrder(cart) {
+    let pr = new Promise(function (resolve, reject) {
+
+        if (!validateCart(cart)) {
+            let err = new Error("Cart is not valid");
+            reject(err);
+        }
+
+        let orderId = "12345";
+        if (orderId) {
+            resolve(orderId);
+        }
+    });
+    return pr;
+}
+
+function validateCart(cart) {
+    return true;
+}
+
+function proceedToPayment(orderId) {
+    return new Promise((resolve, reject) => {
+
+        let output = "";
+        if (orderId) {
+            output = "Payment Successfull for Order Id: " + orderId;
+        }
+        if (output) {
+            resolve(output)
+        }
+        else {
+            reject("No output received")
+        }
+
+    })
+}
+
+createOrder(cart)
+    .then((orderId) => {
+        console.log(orderId);
+        return orderId;
+    }, (err) => {
+        console.log(err.message);
+    })
+    .then((orderId) => {
+        return proceedToPayment(orderId); 
+        //promise is returned here. So now if we WANT to process the returned promise, we can use the .then() function after this.
+    })
+    .then((paymentInfo) => {
+        console.log(paymentInfo);
+    }, (error) => {
+        console.log(error);
+    })
+
+
+
+
+================================================================================================================================
+
+///4 instance - all 4 functions completed - createOrder(), proceedToPayment(), showOrderSummary(), updateWallet()
+
+const cart = ['kurta', 'shoes', 'pants'];
+
+function createOrder(cart) {
+    let pr = new Promise(function (resolve, reject) {
+
+        if (!validateCart(cart)) {
+            let err = new Error("Cart is not valid");
+            reject(err);
+        }
+
+        let orderId = "12345";
+        if (orderId) {
+            resolve(orderId);
+        }
+    });
+    return pr;
+}
+
+function validateCart(cart) {
+    return true;
+}
+
+function proceedToPayment(orderId) {
+    return new Promise((resolve, reject) => {
+        if (orderId) {
+            resolve("Successful")
+        }
+        else {
+            reject("UnSuccessful")
+        }
+    })
+}
+
+function showOrderSummary(paymentInfo) {
+    return new Promise((resolve, reject) => {
+        if (paymentInfo == "Successful") {
+            resolve(cart.length);
+        } else {
+            reject(0);
+        }
+    })
+}
+
+function updateWallet(balance) {
+    return new Promise((resolve, reject) => {
+
+        let walletBalance = balance; //some API here, but we are bypasssing it
+
+        if (walletBalance > 0) {
+            resolve("Your balance is $0 as you have used it all in your purchase")
+        } else {
+            reject("You still have $100 left in your wallet")
+        }
+    })
+}
+
+createOrder(cart)
+    .then((orderId) => {
+        console.log(orderId);
+        return orderId;
+    }, (err) => {
+        console.log(err.message);
+    })
+    .then((orderId) => proceedToPayment(orderId))
+    .then((paymentInfo) => {
+        console.log(paymentInfo + " Payment");
+        return paymentInfo;
+    }, (error) => {
+        console.log(error + " Payment");
+    })
+    .then(paymentInfo => showOrderSummary(paymentInfo))
+    .then(
+        (countOfItems) => {
+            console.log(countOfItems + " items ordered: " + cart);
+            return countOfItems;
+        },
+        (err) => {
+            console.log(err + " items ordered");
+        }
+    )
+    .then(countOfItems => updateWallet(countOfItems))
+    .then(
+        (balance) => {
+            console.log(balance);
+        },
+        (err) => {
+            console.log(err);
+        }
+    )
+
