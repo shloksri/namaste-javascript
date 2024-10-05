@@ -44,7 +44,9 @@ function showOrderSummary(paymentInfo) {
 function updateWallet(balance) {
     return new Promise((resolve, reject) => {
 
-        let walletBalance = balance; //some API here, but we are bypasssing it
+        let walletBalance = 100; //some API here to fetch the walletBalance, but we are bypasssing it
+        //we are assuming that the walletbalance was 100$ before the transaction happened.
+        // and now it is 70$
 
         if (walletBalance > 0) {
             resolve("Your balance is $0 as you have used it all in your purchase")
